@@ -3,7 +3,7 @@ import './App.css';
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed.js";
-import MessageSender from "./MessageSender";
+
 
 function App() {
   return (
@@ -15,7 +15,6 @@ function App() {
       <div className="app_body">
         <Sidebar />
         <Feed />
-        <MessageSender />
         {/* In Body */}
         {/* {Sidebar} Done */}
         {/* {Feed} */}

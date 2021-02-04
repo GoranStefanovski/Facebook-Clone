@@ -1,6 +1,7 @@
 import React from 'react'
 import "./storyReel.css";
 import Story from "./Story";
+import MessageSender from './MessageSender';
 
 function StoryReel() {
     return (
@@ -30,6 +31,7 @@ function StoryReel() {
                 profileSrc="https://pickaface.net/gallery/avatar/Dorka123551177b601b1e.png"
                 title="Marry"
             />
+            {/* <MessageSender /> */}
         </div>
     )
 }
