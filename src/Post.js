@@ -1,6 +1,11 @@
 import React from 'react';
 import { Avatar } from '@material-ui/core';
 import "./Post.css";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import InsertCommentIcon from '@material-ui/icons/InsertComment';
+import NearMeIcon from '@material-ui/icons/NearMe';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExpandMoreOutlinedIcon from '@material-ui/icons/ExpandMoreOutlined';
 
 function Post({ profilePic, image, username, timestamp, message }) {
     return (
@@ -10,7 +15,7 @@ function Post({ profilePic, image, username, timestamp, message }) {
                     className="post__avatar" />
                 <div className="post__topInfo">
                     <h3>{username}</h3>
-                    <p>Timestamp...</p>
+                    <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
                 </div>
             </div>
             <div className="post__bottom">
@@ -18,6 +23,24 @@ function Post({ profilePic, image, username, timestamp, message }) {
             </div>
             <div className="post__image">
                 <img src={image} alt="\" />
+            </div>
+            <div className="post__options">
+                <div className="post__option">
+                    <ThumbUpIcon />
+                    <p>Like</p>
+                </div>
+                <div className="post__option">
+                    <InsertCommentIcon />
+                    <p>Comment</p>
+                </div>
+                <div className="post__option">
+                    <NearMeIcon />
+                    <p>Share</p>
+                </div>
+                <div className="post__option">
+                    <AccountCircleIcon />
+                    <ExpandMoreOutlinedIcon />
+                </div>
             </div>
         </div>
     )

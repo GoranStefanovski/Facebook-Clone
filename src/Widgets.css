@@ -1,0 +1,7 @@
+.widgets {
+    display: table-column;
+}
+
+iframe {
+    margin-top: 10px;
+}

@@ -1,39 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Feed.css";
 import StoryReel from "./StoryReel";
 import MessageSender from "./MessageSender";
 import Post from "./Post";
+import db from "./firebase";
 
 function Feed() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        db.collection("Posts").onSnapshot((snapshot) =>
+            setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
+        );
+    }, []);
     return (
         <div className="feed">
             <StoryReel />
             <MessageSender />
-
-            <Post
-
-                profilePic='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                message='WOW really nice'
-                timestamp='Timestamp'
-                username='tevidma'
-                image='https://specials-images.forbesimg.com/imageserve/5f302109ffad89f9130e07db/960x0.jpg?cropX1=0&cropX2=4800&cropY1=243&cropY2=2943'
-            />
-            <Post
-
-                profilePic='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                message='WOW really nice'
-                timestamp='Timestamp'
-                username='tevidma'
-                image='https://specials-images.forbesimg.com/imageserve/5f302109ffad89f9130e07db/960x0.jpg?cropX1=0&cropX2=4800&cropY1=243&cropY2=2943'
-            />
-            <Post
-
-                profilePic='https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                message='WOW really nice'
-                timestamp='Timestamp'
-                username='tevidma'
-                image='https://specials-images.forbesimg.com/imageserve/5f302109ffad89f9130e07db/960x0.jpg?cropX1=0&cropX2=4800&cropY1=243&cropY2=2943'
-            />
+            {posts.map((post) => (
+                <Post
+                    key={post.id}
+                    profilePic={post.data.profilePic}
+                    message={post.data.message}
+                    timestamp={post.data.timestamp}
+                    username={post.data.username}
+                    image={post.data.image}
+                />
+            ))}
         </div>
     )
 }
